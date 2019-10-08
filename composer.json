@@ -1,0 +1,13 @@
+{
+    "name": "katherine/library-cms",
+    "description": "This is a class project for learning php. We are creating a library cms",
+    "authors": [
+        {
+            "name": "Katherine Love",
+            "email": "katherineslove2301@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^3.6"
+    }
+}
