@@ -13,7 +13,7 @@
         </div>
         <div class="row mb-2">
             <div class="col">
-                <a class="btn btn-outline-primary" href="addBook.html">Add new Book</a>
+                <a class="btn btn-outline-primary" href="addBook.php">Add new Book</a>
             </div>
         </div>
 
