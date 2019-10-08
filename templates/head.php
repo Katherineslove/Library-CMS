@@ -1,9 +1,14 @@
 <?php
-    if(is_dir('vendor')) {
-        require 'vendor/autoload.php';
+    if(is_dir("vendor")) {
+        require "vendor/autoload.php";
     } else {
-        require '../vendor/autoload.php';
+        require "../vendor/autoload.php";
     }
+
+    $dotenv = Dotenv\Dotenv::create(__DIR__ . "/..");
+    $dotenv->load();
+
+    echo getenv("PROJECT_URL");
  ?>
 
 <!DOCTYPE html>
