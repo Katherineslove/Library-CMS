@@ -1,10 +1,10 @@
-<?php require('templates/head.php'); ?>
+<?php require('../templates/head.php'); ?>
 
 <body>
-    <?php require('templates/banner.php'); ?>
+    <?php require('../templates/banner.php'); ?>
 
     <div class="container">
-        <?php require('templates/nav.php'); ?>
+        <?php require('../templates/nav.php'); ?>
 
         <div class="row mb-2">
             <div class="col">
@@ -52,6 +52,6 @@
 
     </div>
 
-    <?php require('templates/scripts.php'); ?>
+    <?php require('../templates/scripts.php'); ?>
 </body>
 </html>
