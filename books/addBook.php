@@ -1,10 +1,21 @@
-<?php require('../templates/head.php'); ?>
+<?php
+    require("../templates/head.php");
+
+    if ($_POST) {
+        // var_dump($_POST);
+        // var_dump("You have submitted a form");
+        extract($_POST);
+        // var_dump($title);
+        // var_dump($author);
+        // var_dump($description);
+    }
+?>
 
 <body>
-    <?php require('../templates/banner.php'); ?>
+    <?php require("../templates/banner.php"); ?>
 
     <div class="container">
-        <?php require('../templates/nav.php'); ?>
+        <?php require("../templates/nav.php"); ?>
 
         <div class="row mb-2">
             <div class="col">
@@ -24,7 +35,7 @@
 
         <div class="row mb-2">
             <div class="col">
-                <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="./books/addBook.php" method="post" enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
                       <label for="title">Book Title</label>
                       <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="">
@@ -52,6 +63,6 @@
 
     </div>
 
-    <?php require('../templates/scripts.php'); ?>
+    <?php require("../templates/scripts.php"); ?>
 </body>
 </html>
