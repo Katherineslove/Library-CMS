@@ -12,13 +12,13 @@
         $errors = array();
 
         if(empty($title)){
-            // var_dump('the title is empty');
+            // var_dump("the title is empty");
             array_push($errors, "The title is empty, please add a value");
         } else if(strlen($title) < 5 ){
-            // var_dump('the length must be at least 5');
+            // var_dump("the length must be at least 5");
             array_push($errors, "The title length must be at least 5 characters");
         } else if(strlen($title) > 100){
-            // var_dump('the length must be less than 100');
+            // var_dump("the length must be less than 100");
             array_push($errors, "The title length must be no more than 100 characters");
         }
 
@@ -50,7 +50,7 @@
             $safeYear = mysqli_real_escape_string($dbc, $year);
             $safeDescription = mysqli_real_escape_string($dbc, $description);
 
-            $sql = "INSERT INTO `authors`(`name`) VALUES ('test author')";
+            $sql = "INSERT INTO `authors`(`name`) VALUES ("test author")";
         }
     }
 ?>
@@ -91,7 +91,7 @@
 
                     <div class="form-group author-group">
                       <label for="author">Year</label>
-                      <input type="text" autocomplete="off" class="form-control"  name="year" placeholder="Enter the year it was released" max="<?php echo date('Y'); ?>" value="<?php if($_POST){ echo $author; }; ?>">
+                      <input type="text" autocomplete="off" class="form-control"  name="year" placeholder="Enter the year it was released" max="<?php echo date("Y"); ?>" value="<?php if($_POST){ echo $author; }; ?>">
                     </div>
 
                     <div class="form-group author-group">
