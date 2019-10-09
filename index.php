@@ -47,11 +47,11 @@
                                 <h3 class="mb-0"><a class="text-dark" href="#">Latest Movie Title</a></h3>
                                 <div class="mb-1 text-muted">Nov 11</div>
                                 <p class="card-text mb-auto">Iron Man</p>
-                                <a href="#">Continue reading</a>
+                                <a href="movies/singleMovie.php">Continue reading</a>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
-                            <img src="images/IronMan1.jpg" alt="" class="img-fluid">
+                            <img src="images/shrek1.jpeg" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
 
         <div class="row mb-2">
             <div class="col">
-                <h1>Harry Potter and the Philosopher's Stone</h1>
+                <h1>Shrek</h1>
             </div>
         </div>
 
@@ -21,17 +21,17 @@
 
         <div class="row mb-2">
             <div class="col-12 col-sm-4 align-self-center">
-                <img class="img-fluid" src="images/HarryPotter1.jpg" alt="">
+                <img class="img-fluid" src="images/shrek1.jpeg" alt="">
             </div>
             <div class="col-12 col-sm-8 align-self-center">
-                <h3>Harry Potter and the Philosopher's Stone</h3>
-                <h4>J K Rowling</h4>
+                <h3>Shrek</h3>
+                <h4>Andrew Adamson, Vicky Jenson</h4>
             </div>
         </div>
 
         <div class="row mb-2">
             <div class="col-12">
-                <p>Harry Potter has been living an ordinary life, constantly abused by his surly and cold aunt and uncle, Vernon and Petunia Dursley and bullied by their spoiled son Dudley since the death of his parents ten years prior. His life changes on the day of his eleventh birthday when he receives a letter of acceptance into a Hogwarts School of Witchcraft and Wizardry.</p>
+                <p>A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back. ... Farquaad, who wants to become the King, sends Shrek to rescue Princess Fiona, who is awaiting her true love in a tower guarded by a fire-breathing dragon.</p>
             </div>
         </div>
     </div>
