@@ -8,6 +8,35 @@
         // var_dump($title);
         // var_dump($author);
         // var_dump($description);
+
+        $errors = array();
+
+        if(empty($title)){
+            // var_dump('the title is empty');
+            array_push($errors, "The title is empty, please add a value");
+        } else if(strlen($title) < 5 ){
+            // var_dump('the length must be at least 5');
+            array_push($errors, "The title length must be at least 5 characters");
+        } else if(strlen($title) > 100){
+            // var_dump('the length must be less than 100');
+            array_push($errors, "The title length must be no more than 100 characters");
+        }
+
+        if(empty($author)){
+            array_push($errors, "The title is empty, please add a value");
+        } else if(strlen($author) < 5 ){
+            array_push($errors, "The author length must be at least 5 characters");
+        } else if(strlen($author) > 100){
+            array_push($errors, "The author length must be no more than 100 characters");
+        }
+
+        if(empty($description)){
+            array_push($errors, "The title is empty, please add a value");
+        } else if(strlen($description) < 10 ){
+            array_push($errors, "The author length must be at least 10 characters");
+        } else if(strlen($description) > 65535){
+            array_push($errors, "The author length must be no more than 65535 characters");
+        }
     }
 ?>
 
@@ -23,15 +52,17 @@
             </div>
         </div>
 
-        <div class="row mb-2">
-            <div class="col">
-                <div class="alert alert-danger pb-0" role="alert">
-                    <ul>
-                        <li>Error Message</li>
-                    </ul>
+        <?php if($_POST && !empty($errors)): ?>
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="alert alert-danger pb-0" role="alert">
+                        <ul>
+                            <li>Error Message</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
 
         <div class="row mb-2">
             <div class="col">
