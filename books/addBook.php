@@ -22,8 +22,14 @@
             array_push($errors, "The title length must be no more than 100 characters");
         }
 
+        if(empty($year)){
+            array_push($errors, "The year is empty, please add a value");
+        } else if(strlen($year) < 4 ){
+            array_push($errors, "The year length must be less than 4");
+        }
+
         if(empty($author)){
-            array_push($errors, "The title is empty, please add a value");
+            array_push($errors, "The author is empty, please add a value");
         } else if(strlen($author) < 5 ){
             array_push($errors, "The author length must be at least 5 characters");
         } else if(strlen($author) > 100){
@@ -31,11 +37,20 @@
         }
 
         if(empty($description)){
-            array_push($errors, "The title is empty, please add a value");
+            array_push($errors, "The description is empty, please add a value");
         } else if(strlen($description) < 10 ){
-            array_push($errors, "The author length must be at least 10 characters");
+            array_push($errors, "The description length must be at least 10 characters");
         } else if(strlen($description) > 65535){
-            array_push($errors, "The author length must be no more than 65535 characters");
+            array_push($errors, "The description length must be no more than 65535 characters");
+        }
+
+        if(empty($errors)){
+            $safeTitle = mysqli_real_escape_string($dbc, $title);
+            $safeAuthor = mysqli_real_escape_string($dbc, $author);
+            $safeYear = mysqli_real_escape_string($dbc, $year);
+            $safeDescription = mysqli_real_escape_string($dbc, $description);
+
+            $sql = "INSERT INTO `authors`(`name`) VALUES ('test author')";
         }
     }
 ?>
@@ -57,7 +72,9 @@
                 <div class="col">
                     <div class="alert alert-danger pb-0" role="alert">
                         <ul>
-                            <li>Error Message</li>
+                            <?php foreach($errors as $error): ?>
+                                <li><?php echo $error; ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
@@ -69,17 +86,22 @@
                 <form action="./books/addBook.php" method="post" enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
                       <label for="title">Book Title</label>
-                      <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="">
+                      <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="<?php if($_POST){ echo $title; }; ?>">
+                    </div>
+
+                    <div class="form-group author-group">
+                      <label for="author">Year</label>
+                      <input type="text" autocomplete="off" class="form-control"  name="year" placeholder="Enter the year it was released" max="<?php echo date('Y'); ?>" value="<?php if($_POST){ echo $author; }; ?>">
                     </div>
 
                     <div class="form-group author-group">
                       <label for="author">Author</label>
-                      <input type="text" autocomplete="off" class="form-control"  name="author" placeholder="Enter books author" value="">
+                      <input type="text" autocomplete="off" class="form-control"  name="author" placeholder="Enter books author" value="<?php if($_POST){ echo $author; }; ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="description">Book Description</label>
-                      <textarea class="form-control" name="description" rows="8" cols="80" placeholder="Description about the book"></textarea>
+                      <textarea class="form-control" name="description" rows="8" cols="80" placeholder="Description about the book"><?php if($_POST){ echo $description; }; ?></textarea>
                     </div>
 
                     <div class="form-group">
