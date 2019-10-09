@@ -8,7 +8,7 @@
     $dotenv = Dotenv\Dotenv::create(__DIR__ . "/..");
     $dotenv->load();
 
-    echo getenv("PROJECT_URL");
+    // echo getenv("PROJECT_URL");
  ?>
 
 <!DOCTYPE html>
