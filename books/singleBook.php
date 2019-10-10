@@ -1,9 +1,17 @@
 <?php
 
     require("../templates/head.php");
+    $bookID = $_GET['id'];
+    $sql = "SELECT * FROM `books` WHERE _id = $bookID";
+    $result = mysqli_query($dbc, $sql);
 
-    var_dump($_GET);
-
+    if($result && mysqli_affected_rows($dbc) > 0){
+        die("got one");
+    } else if ($result && mysqli_affected_rows($dbc) === 0){
+        die("404");
+    } else {
+        die("something went wrong with getting a single book");
+    }
 ?>
 
 <body>
