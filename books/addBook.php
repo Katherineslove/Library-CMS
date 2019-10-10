@@ -95,9 +95,9 @@
                       <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="<?php if($_POST){ echo $title; }; ?>">
                     </div>
 
-                    <div class="form-group author-group">
-                      <label for="author">Year</label>
-                      <input type="text" autocomplete="off" class="form-control"  name="year" placeholder="Enter the year it was released" max="<?php echo date("Y"); ?>" value="<?php if($_POST){ echo $author; }; ?>">
+                    <div class="form-group">
+                      <label for="year">Year</label>
+                      <input type="number" autocomplete="off" class="form-control"  name="year" placeholder="Enter the year it was released" max="<?php echo date('Y'); ?>" value="<?php if($_POST){ echo $year; }; ?>">
                     </div>
 
                     <div class="form-group author-group">
