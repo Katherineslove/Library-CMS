@@ -8,13 +8,13 @@
     $dotenv = Dotenv\Dotenv::create(__DIR__ . "/..");
     $dotenv->load();
 
-    echo getenv("PROJECT_URL");
+    // echo getenv("PROJECT_URL");
  ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <base href="http://192.168.33.10/Library-CMS/">
+    <base href="http://localhost:8888/moduleFour/Library-CMS/">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
