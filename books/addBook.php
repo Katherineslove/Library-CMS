@@ -48,6 +48,7 @@
             // $title = mysqli_real_escape_string($dbc, $title);
             $safeTitle = mysqli_real_escape_string($dbc, $title);
             $safeAuthor = mysqli_real_escape_string($dbc, $author);
+            $safeYear = mysqli_real_escape_string($dbc, $year);
             $safeDescription = mysqli_real_escape_string($dbc, $description);
 
             $sql = "INSERT INTO `authors`(`name`) VALUES ('$safeAuthor')";
