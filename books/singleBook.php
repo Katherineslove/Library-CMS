@@ -6,9 +6,10 @@
     $result = mysqli_query($dbc, $sql);
 
     if($result && mysqli_affected_rows($dbc) > 0){
-        die("got one");
+        $singleBook = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        var_dump($singleBook);
     } else if ($result && mysqli_affected_rows($dbc) === 0){
-        die("404");
+        header("Location: ../errors/404.php");
     } else {
         die("something went wrong with getting a single book");
     }
@@ -22,7 +23,7 @@
 
         <div class="row mb-2">
             <div class="col">
-                <h1>Harry Potter and the Philosopher's Stone</h1>
+                <h1><?php echo $singleBook['title'] ?></h1>
             </div>
         </div>
 
@@ -38,14 +39,15 @@
                 <img class="img-fluid" src="images/HarryPotter1.jpg" alt="">
             </div>
             <div class="col-12 col-sm-8 align-self-center">
-                <h3>Harry Potter and the Philosopher's Stone</h3>
-                <h4>J K Rowling</h4>
+                <h3><?php echo $singleBook['title'] ?></h3>
+                <h4><?php echo $singleBook['year'] ?></h4>
+                <h4><?php echo $singleBook['author_id'] ?></h4>
             </div>
         </div>
 
         <div class="row mb-2">
             <div class="col-12">
-                <p>Harry Potter has been living an ordinary life, constantly abused by his surly and cold aunt and uncle, Vernon and Petunia Dursley and bullied by their spoiled son Dudley since the death of his parents ten years prior. His life changes on the day of his eleventh birthday when he receives a letter of acceptance into a Hogwarts School of Witchcraft and Wizardry.</p>
+                <p><?php echo $singleBook['description'] ?></p>
             </div>
         </div>
     </div>
@@ -55,7 +57,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete Harry Potter and the Philosopher"s Stone</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete <?php echo $singleBook['title']; ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
