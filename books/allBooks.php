@@ -1,4 +1,17 @@
-<?php require("../templates/head.php"); ?>
+<?php
+
+    require("../templates/head.php");
+
+    $sql = "SELECT * FROM `books` WHERE 1";
+    $result = mysqli_query($dbc, $sql);
+
+    if($result){
+        $allBooks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        var_dump($allBooks);
+    } else {
+        die("Something went wrong with getting all of our books");
+    }
+?>
 
 <body>
     <?php require("../templates/banner.php"); ?>
@@ -18,20 +31,28 @@
         </div>
 
         <div class="row d-flex">
-            <div class="col-12 col-md-3">
-                 <div class="card mb-4 shadow-sm h-100">
-                     <img class="card-img-top" src="images/HarryPotter1.jpg" alt="Card image cap">
-                     <div class="card-body">
-                         <p class="card-text">Harry Potter and the Philosopher's Stone</p>
-                         <div class="d-flex justify-content-between align-items-center">
-                             <div class="btn-group">
-                                 <a href="books/singleBook.php" class="btn btn-sm btn-outline-info">View</a>
-                                 <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <?php if($allBooks):?>
+                <?php foreach ($allBooks as $singleBook):?>
+                    <div class="col-12 col-md-3">
+                         <div class="card mb-4 shadow-sm h-100">
+                             <img class="card-img-top" src="images/HarryPotter1.jpg" alt="Card image cap">
+                             <div class="card-body">
+                                 <p class="card-text"><?php echo $singleBook['title']; ?></p>
+                                 <div class="d-flex justify-content-between align-items-center">
+                                     <div class="btn-group">
+                                         <a href="books/singleBook.php?id=<?php echo $singleBook['_id']; ?>" class="btn btn-sm btn-outline-info">View</a>
+                                         <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                     </div>
+                                 </div>
                              </div>
                          </div>
                      </div>
-                 </div>
-             </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <p>Sorry, there aren't any book in the library right now.</p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

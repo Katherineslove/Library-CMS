@@ -1,4 +1,10 @@
-<?php require("../templates/head.php"); ?>
+<?php
+
+    require("../templates/head.php");
+
+    var_dump($_GET);
+
+?>
 
 <body>
     <?php require("../templates/banner.php"); ?>
