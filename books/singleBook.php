@@ -1,10 +1,10 @@
-<?php require('../templates/head.php'); ?>
+<?php require("../templates/head.php"); ?>
 
 <body>
-    <?php require('../templates/banner.php'); ?>
+    <?php require("../templates/banner.php"); ?>
 
     <div class="container">
-        <?php require('../templates/nav.php'); ?>
+        <?php require("../templates/nav.php"); ?>
 
         <div class="row mb-2">
             <div class="col">
@@ -41,7 +41,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete Harry Potter and the Philosopher's Stone</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete Harry Potter and the Philosopher"s Stone</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -54,6 +54,6 @@
         </div>
     </div>
 
-    <?php require('../templates/scripts.php'); ?>
+    <?php require("../templates/scripts.php"); ?>
 </body>
 </html>

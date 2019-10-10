@@ -1,14 +1,14 @@
-<?php require('../templates/head.php'); ?>
+<?php require("../templates/head.php"); ?>
 
 <body>
-    <?php require('../templates/banner.php'); ?>
+    <?php require("../templates/banner.php"); ?>
 
     <div class="container">
-        <?php require('../templates/nav.php'); ?>
+        <?php require("../templates/nav.php"); ?>
 
         <div class="row mb-2">
             <div class="col">
-                <h1>Add New Book</h1>
+                <h1>Add New Movie</h1>
             </div>
         </div>
 
@@ -26,17 +26,17 @@
             <div class="col">
                 <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
-                      <label for="title">Book Title</label>
+                      <label for="title">Movie Title</label>
                       <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="">
                     </div>
 
                     <div class="form-group author-group">
-                      <label for="author">Author</label>
+                      <label for="author">Director/s</label>
                       <input type="text" autocomplete="off" class="form-control"  name="author" placeholder="Enter books author" value="">
                     </div>
 
                     <div class="form-group">
-                      <label for="description">Book Description</label>
+                      <label for="description">Movie Description</label>
                       <textarea class="form-control" name="description" rows="8" cols="80" placeholder="Description about the book"></textarea>
                     </div>
 
@@ -52,6 +52,6 @@
 
     </div>
 
-    <?php require('../templates/scripts.php'); ?>
+    <?php require("../templates/scripts.php"); ?>
 </body>
 </html>
