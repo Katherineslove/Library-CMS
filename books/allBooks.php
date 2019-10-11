@@ -7,7 +7,7 @@
 
     if($result){
         $allBooks = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        var_dump($allBooks);
+        // var_dump($allBooks);
     } else {
         die("Something went wrong with getting all of our books");
     }

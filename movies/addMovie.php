@@ -6,8 +6,8 @@
         // var_dump("You have submitted a form");
         extract($_POST);
         // var_dump($title);
-        // var_dump($director);
         // var_dump($year);
+        // var_dump($director);
         // var_dump($description);
 
         $errors = array();
@@ -46,18 +46,22 @@
         }
 
         if(empty($errors)){
-            $title = mysqli_real_escape_string($dbc, $title);
+            // $title = mysqli_real_escape_string($dbc, $title);
             $safeTitle = mysqli_real_escape_string($dbc, $title);
-            $safeDirector = mysqli_real_escape_string($dbc, $director);
+            $safeDirector = mysqli_real_escape_string($dbc, $author);
+            $safeYear = mysqli_real_escape_string($dbc, $year);
             $safeDescription = mysqli_real_escape_string($dbc, $description);
+            
+            $directorID = 1;
 
-            $sql = "INSERT INTO `directors`(`name`) VALUES ('$safeDirector')";
-            $result = mysqli_query($dbc, $sql);
-            if($result && mysqli_affected_rows($dbc) > 0){
-                var_dump('director was added');
+            $moviesSql = "INSERT INTO `movies`( `title`, `year`, `description`, `director_id`) VALUES ('$safeTitle',$safeYear,'$safeDescription',$directorID)";
+            $moviesResult = mysqli_query($dbc, $moviesSql);
+            if($moviesResult && mysqli_affected_rows($dbc) > 0){
+                header('Location: singleMovie.php');
             } else {
-                die('Something went wrong with adding in our director');
+                die('Something went wrong with adding in our movies');
             }
+
         }
     }
 ?>
