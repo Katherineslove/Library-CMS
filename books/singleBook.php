@@ -2,9 +2,9 @@
 
     require("../templates/head.php");
     $bookID = $_GET['id'];
-    $sql = "SELECT * FROM `books` WHERE _id = $bookID";
+    // $sql = "SELECT * FROM `books` WHERE _id = $bookID";
+    $sql = "SELECT books.`_id` as bookID, `title`, `year`, `description`, authors.name as author_name FROM `books` INNER JOIN authors ON books.author_id = authors._id WHERE books._id = $bookID";
     $result = mysqli_query($dbc, $sql);
-
     if($result && mysqli_affected_rows($dbc) > 0){
         $singleBook = mysqli_fetch_array($result, MYSQLI_ASSOC);
         var_dump($singleBook);
@@ -64,7 +64,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger">Confirm Delete</button>
+                    <!-- <button type="button" class="btn btn-danger">Confirm Delete</button> -->
+                    <a href="books/delete.php" class="btn btn-danger">Confirm Delete</a>
                 </div>
             </div>
         </div>
