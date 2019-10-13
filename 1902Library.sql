@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 10, 2019 at 10:53 PM
+-- Generation Time: Oct 11, 2019 at 06:31 AM
 -- Server version: 5.7.27-0ubuntu0.16.04.1
 -- PHP Version: 7.0.33-8+ubuntu16.04.1+deb.sury.org+1
 
@@ -36,9 +36,12 @@ CREATE TABLE `authors` (
 --
 
 INSERT INTO `authors` (`_id`, `name`) VALUES
-(1, 'test author'),
-(2, 'test author'),
-(3, 'Yeetith');
+(7, 'Gillian Flynn'),
+(8, 'Stephen Hawking'),
+(9, 'Gwendoline Smith'),
+(10, 'Anthony Capella'),
+(11, 'Gilly Macmillan'),
+(12, 'Jojo Mayes');
 
 -- --------------------------------------------------------
 
@@ -59,11 +62,12 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`_id`, `title`, `year`, `description`, `author_id`) VALUES
-(1, 'test book', 2002, 'this is the description of our test book', 1),
-(2, 'Lion Witch and The Wardrobe', 2001, 'jkfdjdfjfjfjfsjdfg', 1),
-(3, 'Lion Witch and The Wardrobe', 2001, 'jkfdjdfjfjfjfsjdfg', 1),
-(4, 'Testing Book', 2002, 'Testing our book', 1),
-(5, 'Testing Book', 2002, 'Tesytkfkjhxfgkdfgkdfgk', 1);
+(11, 'Gone Girl ', 2012, 'Gone Girl is a thriller novel in the mystery and crime genres', 7),
+(12, 'Brief Answers To The Big Questions', 2018, 'Brief Answers to the Big Questions is a popular-science book written by physicist Stephen Hawking', 8),
+(13, 'The Book Of Knowing', 2010, '\'This book has given our daughter life\'s most essential skill: the ability to notice and manage her thoughts.', 9),
+(14, 'The Girl Before', 2016, 'Please make a list of every possession you consider essential to your life. ', 10),
+(15, 'The Perfect Girl', 2016, 'The New York Times bestselling author of What She Knew returns with an electrifying new novel about how the past will always find us.', 11),
+(16, 'Still Me', 2018, 'From the New York Times bestselling author of The Giver of Stars, discover the love story that captured over 20 million hearts in Me Before You, After You, and Still Me.', 12);
 
 -- --------------------------------------------------------
 
@@ -137,12 +141,12 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `_id` tinyint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `_id` tinyint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `_id` tinyint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `_id` tinyint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `directors`
 --
