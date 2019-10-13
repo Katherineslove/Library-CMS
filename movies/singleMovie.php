@@ -11,7 +11,7 @@
     } else if ($result && mysqli_affected_rows($dbc) === 0){
         header("Location: ../errors/404.php");
     } else {
-        die("something went wrong with getting a single book");
+        die("something went wrong with getting a single movie");
     }
 ?>
 

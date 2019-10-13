@@ -50,7 +50,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="col-12">
-                    <p>Sorry, there aren't any book in the library right now.</p>
+                    <p>Sorry, there aren't any movie in the library right now.</p>
                 </div>
             <?php endif; ?>
         </div>
