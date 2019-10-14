@@ -1,6 +1,26 @@
 <?php
     require("../templates/head.php");
 
+    if(isset($_GET['id'])) {
+        // var_dump("We are editing a movie");
+        $pageTitle = "Edit Movie";
+        $movieID = $_GET['id'];
+        $sql = "SELECT movies.`_id` as movieID, `title`, `year`, `description`, authors.name as author_name FROM `movies` INNER JOIN authors ON movie.director_id = directors._id WHERE movie._id = $movieID";
+        $result = mysqli_query($dbc, $sql);
+        if($result && mysqli_affected_rows($dbc) > 0){
+            $singleMovie = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            // var_dump($singleMovie);
+            extract($singleMovie);
+        } else if ($result && mysqli_affected_rows($dbc) === 0){
+            header("Location: ../errors/404.php");
+        } else {
+            die("something went wrong with getting a single movie");
+        }
+    } else {
+        // var_dump("We are adding a new movie");
+        $pageTitle = "Add New Movie";
+    }
+
     if ($_POST) {
         // var_dump($_POST);
         // var_dump("You have submitted a form");
@@ -48,18 +68,41 @@
         if(empty($errors)){
             // $title = mysqli_real_escape_string($dbc, $title);
             $safeTitle = mysqli_real_escape_string($dbc, $title);
-            $safeDirector = mysqli_real_escape_string($dbc, $author);
+            $safeDirector = mysqli_real_escape_string($dbc, $director);
             $safeYear = mysqli_real_escape_string($dbc, $year);
             $safeDescription = mysqli_real_escape_string($dbc, $description);
 
-            $directorID = 1;
+            $findSql = "SELECT * FROM `directors` WHERE name = '$safeDirector'";
+            $findResult = mysqli_query($dbc, $findSql);
+            if($findResult && mysqli_affected_rows($dbc) > 0){
+                $foundDirector = mysqli_fetch_array($findResult, MYSQLI_ASSOC);
+                $directorID = $foundDirector["_id"];
+            } else if ($findResult && mysqli_affected_rows($dbc) === 0){
+                $sql = "INSERT INTO `directors`(`name`) VALUES ('$safeDirector')";
+                $result = mysqli_query($dbc, $sql);
+                if($result && mysqli_affected_rows($dbc) > 0){
+                    $directorID = $dbc->insert_id;
+                } else {
+                    die("Something went wrong with adding in our directors");
+                }
+            } else {
+                die("Something went wrong with adding in our movies");
+            }
 
-            $moviesSql = "INSERT INTO `movies`( `title`, `year`, `description`, `director_id`) VALUES ('$safeTitle',$safeYear,'$safeDescription',$directorID)";
+            if (isset($_GET['id'])) {
+                $moviesSql = "UPDATE `movies` SET `title`= '$safeTitle',`year`= $safeYear,`description`='$safeDescription',`director_id`= $directorID WHERE _id = $movieID";
+            } else {
+                $moviesSql = "INSERT INTO `movies`( `title`, `year`, `description`, `director_id`) VALUES ('$safeTitle',$safeYear,'$safeDescription',$directorID)";
+            }
+
             $moviesResult = mysqli_query($dbc, $moviesSql);
             if($moviesResult && mysqli_affected_rows($dbc) > 0){
-                header('Location: singleMovie.php');
+                if (!isset($_GET['id'])) {
+                    $movieID = $dbc->insert_id;
+                }
+                header("Location: singleMovie.php?id=".$movieID);
             } else {
-                die('Something went wrong with adding in our movies');
+                die("Something went wrong with adding in our movies");
             }
 
         }
@@ -94,25 +137,25 @@
 
         <div class="row mb-2">
             <div class="col">
-                <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="./movies/addMovie.php<?php if(isset($_GET['id'])){ echo '?id='.$_GET['id'];};?>" method="post" enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
                       <label for="title">Movie Title</label>
-                      <input type="text" class="form-control" name="title"  placeholder="Enter movie title" value="<?php if($_POST){ echo $title; }; ?>">
+                      <input type="text" class="form-control" name="title"  placeholder="Enter movie title" value="<?php if(isset($title)){ echo $title; }; ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="year">Year</label>
-                      <input type="number" autocomplete="off" class="form-control"  name="year" placeholder="Enter the year it was released" max="<?php echo date('Y'); ?>" value="<?php if($_POST){ echo $year; }; ?>">
+                      <input type="number" autocomplete="off" class="form-control"  name="year" placeholder="Enter the year it was released" max="<?php echo date('Y'); ?>" value="<?php if(isset($year)){ echo $year; }; ?>">
                     </div>
 
                     <div class="form-group director-group">
                       <label for="director">Director/s</label>
-                      <input type="text" autocomplete="off" class="form-control"  name="director" placeholder="Enter the movies director" value="<?php if($_POST){ echo $director; }; ?>">
+                      <input type="text" autocomplete="off" class="form-control"  name="director" placeholder="Enter the movies director" value="<?php if(isset($director_name)){ echo $director_name; }; ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="description">Movie Description</label>
-                      <textarea class="form-control" name="description" rows="8" cols="80" placeholder="Description about the movie"><?php if($_POST){ echo $description; }; ?></textarea>
+                      <textarea class="form-control" name="description" rows="8" cols="80" placeholder="Description about the movie"><?php if(isset($description)){ echo $description; }; ?></textarea>
                     </div>
 
                     <div class="form-group">

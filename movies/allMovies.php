@@ -2,12 +2,11 @@
 
     require("../templates/head.php");
 
-    $sql = "SELECT * FROM `movies` WHERE 1";
+    $sql = "SELECT `_id`, `title` FROM `movies` WHERE 1";
     $result = mysqli_query($dbc, $sql);
 
     if($result){
         $allMovies = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        // var_dump($allMovies);
     } else {
         die("Something went wrong with getting all of our movies");
     }
@@ -35,13 +34,13 @@
                 <?php foreach ($allMovies as $singleMovie):?>
                     <div class="col-12 col-md-3">
                          <div class="card mb-4 shadow-sm h-100">
-                             <img class="card-img-top" src="images/HarryPotter1.jpg" alt="Card image cap">
+                             <img class="card-img-top" src="images/shrek1.jpeg" alt="Card image cap">
                              <div class="card-body">
                                  <p class="card-text"><?php echo $singleMovie['title']; ?></p>
                                  <div class="d-flex justify-content-between align-items-center">
                                      <div class="btn-group">
                                          <a href="movies/singleMovie.php?id=<?php echo $singleMovie['_id']; ?>" class="btn btn-sm btn-outline-info">View</a>
-                                         <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                         <a href="movies/addMovie.php?id=<?php echo $singleMovie['_id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                                      </div>
                                  </div>
                              </div>

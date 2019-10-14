@@ -1,13 +1,13 @@
 <?php
 
     require("../templates/head.php");
-    $bookID = $_GET['id'];
-    $sql = "SELECT * FROM `books` WHERE _id = $bookID";
+    $movieID = $_GET['id'];
+    // $sql = "SELECT * FROM `movie` WHERE _id = $movieID";
+    $sql = "SELECT movies.`_id` as movieID, `title`, `year`, `description`, directors.name as directors_name FROM `movies` INNER JOIN directors ON movies.director_id = directors._id WHERE movies._id = $movieID";
     $result = mysqli_query($dbc, $sql);
-
     if($result && mysqli_affected_rows($dbc) > 0){
-        $singleBook = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        var_dump($singleBook);
+        $singleMovie = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        // var_dump($singleMovie);
     } else if ($result && mysqli_affected_rows($dbc) === 0){
         header("Location: ../errors/404.php");
     } else {
@@ -64,7 +64,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger">Confirm Delete</button>
+                    <form action="./movies/delete.php" method="post">
+                        <input type="hidden" name="movieID" value="<?php echo $singleMovie['movieID']; ?>">
+                        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

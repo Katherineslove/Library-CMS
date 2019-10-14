@@ -26,6 +26,7 @@
         // var_dump("You have submitted a form");
         extract($_POST);
         // var_dump($title);
+        // var_dump($year);
         // var_dump($author);
         // var_dump($description);
 
