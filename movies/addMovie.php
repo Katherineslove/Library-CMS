@@ -51,7 +51,7 @@
             $safeDirector = mysqli_real_escape_string($dbc, $author);
             $safeYear = mysqli_real_escape_string($dbc, $year);
             $safeDescription = mysqli_real_escape_string($dbc, $description);
-            
+
             $directorID = 1;
 
             $moviesSql = "INSERT INTO `movies`( `title`, `year`, `description`, `director_id`) VALUES ('$safeTitle',$safeYear,'$safeDescription',$directorID)";
