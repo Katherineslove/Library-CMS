@@ -2,12 +2,11 @@
 
     require("../templates/head.php");
 
-    $sql = "SELECT * FROM `books` WHERE 1";
+    $sql = "SELECT `_id`, `title` FROM `books` WHERE 1";
     $result = mysqli_query($dbc, $sql);
 
     if($result){
         $allBooks = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        // var_dump($allBooks);
     } else {
         die("Something went wrong with getting all of our books");
     }
@@ -41,7 +40,7 @@
                                  <div class="d-flex justify-content-between align-items-center">
                                      <div class="btn-group">
                                          <a href="books/singleBook.php?id=<?php echo $singleBook['_id']; ?>" class="btn btn-sm btn-outline-info">View</a>
-                                         <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                         <a href="books/addBook.php?id=<?php echo $singleBook['_id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                                      </div>
                                  </div>
                              </div>

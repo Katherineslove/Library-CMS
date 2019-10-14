@@ -1,6 +1,14 @@
 <?php
     require("../templates/head.php");
 
+    if(isset($_GET['id'])) {
+        var_dump('We are editing a book');
+    } else {
+        var_dump('We are adding a new book');
+    }
+
+
+
     if ($_POST) {
         // var_dump($_POST);
         // var_dump("You have submitted a form");
