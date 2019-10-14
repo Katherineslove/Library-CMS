@@ -2,9 +2,22 @@
     require("../templates/head.php");
 
     if(isset($_GET['id'])) {
-        var_dump('We are editing a book');
+        // var_dump("We are editing a book");
+        $pageTitle = "Edit Book";
+        $bookID = $_GET['id'];
+        $sql = "SELECT books.`_id` as bookID, `title`, `year`, `description`, authors.name as author_name FROM `books` INNER JOIN authors ON books.author_id = authors._id WHERE books._id = $bookID";
+        $result = mysqli_query($dbc, $sql);
+        if($result && mysqli_affected_rows($dbc) > 0){
+            $singleBook = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            var_dump($singleBook);
+        } else if ($result && mysqli_affected_rows($dbc) === 0){
+            header("Location: ../errors/404.php");
+        } else {
+            die("something went wrong with getting a single book");
+        }
     } else {
-        var_dump('We are adding a new book');
+        // var_dump("We are adding a new book");
+        $pageTitle = "Add New Book";
     }
 
 
@@ -63,26 +76,26 @@
             $findResult = mysqli_query($dbc, $findSql);
             if($findResult && mysqli_affected_rows($dbc) > 0){
                 $foundAuthor = mysqli_fetch_array($findResult, MYSQLI_ASSOC);
-                $authorID = $foundAuthor['_id'];
+                $authorID = $foundAuthor["_id"];
             } else if ($findResult && mysqli_affected_rows($dbc) === 0){
                 $sql = "INSERT INTO `authors`(`name`) VALUES ('$safeAuthor')";
                 $result = mysqli_query($dbc, $sql);
                 if($result && mysqli_affected_rows($dbc) > 0){
                     $authorID = $dbc->insert_id;
                 } else {
-                    die('Something went wrong with adding in our author');
+                    die("Something went wrong with adding in our author");
                 }
             } else {
-                die('Something went wrong with adding in our books');
+                die("Something went wrong with adding in our books");
             }
 
             $booksSql = "INSERT INTO `books`( `title`, `year`, `description`, `author_id`) VALUES ('$safeTitle',$safeYear,'$safeDescription',$authorID)";
             $booksResult = mysqli_query($dbc, $booksSql);
             if($booksResult && mysqli_affected_rows($dbc) > 0){
                 $bookID = $dbc->insert_id;
-                header('Location: singleBook.php?id='.$bookID);
+                header("Location: singleBook.php?id=".$bookID);
             } else {
-                die('Something went wrong with adding in our books');
+                die("Something went wrong with adding in our books");
             }
 
         }
