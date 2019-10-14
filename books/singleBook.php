@@ -7,7 +7,7 @@
     $result = mysqli_query($dbc, $sql);
     if($result && mysqli_affected_rows($dbc) > 0){
         $singleBook = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        var_dump($singleBook);
+        // var_dump($singleBook);
     } else if ($result && mysqli_affected_rows($dbc) === 0){
         header("Location: ../errors/404.php");
     } else {
